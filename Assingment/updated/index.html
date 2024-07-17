@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Form</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="scripts.js" defer></script>
+</head>
+<body>
+    <div class="container">
+        <form id="registrationForm" action="register.php" method="POST">
+            <h2>Registration Form</h2>
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required pattern="[A-Za-z\s]+" title="Name should contain only letters and spaces.">
+
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required pattern="[A-Za-z]+" title="Username should contain only letters.">
+
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+
+            <label for="role">Role:</label>
+            <select id="role" name="role" required onchange="showFields()">
+                <option value="">Select Role</option>
+                <option value="student">Student</option>
+                <option value="lecturer">Lecturer</option>
+                <option value="admin">Admin</option>
+            </select>
+
+            <!-- Additional fields for Student -->
+            <div id="studentFields" style="display: none;">
+                <label for="registrationNumber">Registration Number:</label>
+                <input type="text" id="registrationNumber" name="registrationNumber">
+
+                <label for="year">Year:</label>
+                <input type="year" id="year" name="year">
+
+                <label for="semester">Semester:</label>
+                <input type="text" id="semester" name="semester">
+            </div>
+
+            <!-- Additional fields for Lecturer -->
+            <div id="lecturerFields" style="display: none;">
+                <label for="recruitmentYear">Year of Recruitment:</label>
+                <input type="year" id="recruitmentYear" name="recruitmentYear">
+
+                <label for="department">Department:</label>
+                <input type="text" id="department" name="department">
+
+                <label for="employeeNumber">Employee Number:</label>
+                <input type="text" id="employeeNumber" name="employeeNumber">
+
+                <label for="unitSpecials">Unit Specials:</label>
+                <input type="text" id="unitSpecials" name="unitSpecials">
+            </div>
+
+            <!-- Login fields for Admin -->
+            <div id="adminFields" style="display: none;">
+                <p>Admins can log in with their username and password.</p>
+            </div>
+
+            <div class="buttons">
+                <button type="submit">Register</button>
+                <button type="button" onclick="clearForm()">Clear</button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        function showFields() {
+            var role = document.getElementById('role').value;
+            document.getElementById('studentFields').style.display = role === 'student' ? 'block' : 'none';
+            document.getElementById('lecturerFields').style.display = role === 'lecturer' ? 'block' : 'none';
+            document.getElementById('adminFields').style.display = role === 'admin' ? 'block' : 'none';
+        }
+
+        function clearForm() {
+            document.getElementById('registrationForm').reset();
+            showFields();
+        }
+    </script>
+</body>
+</html>
