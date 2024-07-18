@@ -1,21 +1,97 @@
 /* General styles for the body and container */
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    overflow: hidden;
+    background: #e5e5e5; /* Soft grey background for a professional look */
+    position: relative;
+}
+
+/* Create a modern animated background with floating shapes */
+#background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: -1;
+}
+
+/* Animated circles */
+.shape {
+    position: absolute;
+    border-radius: 50%;
+    background-color: rgba(0, 150, 136, 0.15); /* Subtle teal */
+    animation: moveShape 30s infinite ease-in-out;
+    pointer-events: none;
+}
+
+@keyframes moveShape {
+    0% {
+        transform: translate(0, 0) scale(1);
+        opacity: 0.5;
+    }
+    50% {
+        transform: translate(100vw, 100vh) scale(1.2);
+        opacity: 0.3;
+    }
+    100% {
+        transform: translate(-100vw, -100vh) scale(1);
+        opacity: 0.5;
+    }
+}
+
+/* Navbar styles */
+.navbar {
+    width: 100%;
+    background-color: #004d40; /* Deep teal */
+    overflow: hidden;
+    padding: 12px 0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+}
+
+.navbar ul {
+    list-style-type: none;
     margin: 0;
     padding: 0;
     display: flex;
     justify-content: center;
-    align-items: center;
-    height: 100vh;
 }
 
+.navbar li {
+    margin: 0 25px;
+}
+
+.navbar a {
+    text-decoration: none;
+    color: #e0f2f1; /* Light color text */
+    font-size: 16px;
+    padding: 10px 20px;
+    display: block;
+    text-align: center;
+    transition: background-color 0.3s, color 0.3s;
+    border-radius: 5px;
+}
+
+.navbar a:hover {
+    background-color: #003d33; /* Darker teal on hover */
+    color: #ffffff; /* White text on hover */
+}
+
+/* Container styles */
 .container {
-    background-color: #fff;
-    padding: 20px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
-    width: 300px;
+    background-color: #ffffff;
+    padding: 25px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+    border-radius: 12px;
+    width: 90%;
+    max-width: 1200px;
+    margin: 40px auto;
+    position: relative; /* To place the container above the animated background */
 }
 
 /* Form styles */
@@ -24,49 +100,67 @@ form {
     flex-direction: column;
 }
 
-h2 {
+h2, h3 {
     text-align: center;
     margin-bottom: 20px;
+    color: #004d40; /* Deep teal text color */
 }
 
 label {
     margin-bottom: 5px;
-    font-weight: bold;
+    font-weight: 600;
+    color: #004d40; /* Deep teal text color */
 }
 
 input[type="text"],
 input[type="password"],
 input[type="number"],
 select {
-    padding: 10px;
-    margin-bottom: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+    padding: 12px;
+    margin-bottom: 15px;
+    border: 1px solid #b0bec5; /* Light grey border */
+    border-radius: 5px;
     font-size: 16px;
+    transition: border-color 0.3s;
 }
 
+input[type="text"]:focus,
+input[type="password"]:focus,
+input[type="number"]:focus,
+select:focus {
+    border-color: #00796b; /* Darker green on focus */
+    outline: none;
+}
+
+/* Button styles */
 button {
-    padding: 10px;
-    background-color: #4CAF50;
-    color: #fff;
+    padding: 12px;
+    background-color: #00796b; /* Green button background */
+    color: #ffffff;
     border: none;
-    border-radius: 4px;
+    border-radius: 5px;
     font-size: 16px;
     cursor: pointer;
-    margin-bottom: 10px;
+    margin-bottom: 12px;
+    transition: background-color 0.3s, transform 0.2s;
 }
 
 button:hover {
-    background-color: #45a049;
+    background-color: #004d40; /* Darker green on hover */
+    transform: translateY(-2px); /* Slight lift effect */
+}
+
+button:active {
+    transform: translateY(0); /* Return to original position */
 }
 
 /* Clear button styles */
 button[type="button"] {
-    background-color: #f44336;
+    background-color: #f44336; /* Red background */
 }
 
 button[type="button"]:hover {
-    background-color: #e53935;
+    background-color: #c62828; /* Darker red on hover */
 }
 
 /* Additional fields for students and lecturers */
@@ -79,27 +173,12 @@ button[type="button"]:hover {
 p {
     text-align: center;
     margin-bottom: 20px;
-}
-/* style for the dashboards*/
-/* General styles for the body and container */
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
+    color: #004d40; /* Deep teal text color */
 }
 
-.container {
-    background-color: #fff;
-    padding: 20px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
-    width: 80%;
-    max-width: 800px;
+.buttons {
+    display: flex;
+    justify-content: space-between;
 }
 
 /* Table styles */
@@ -110,67 +189,36 @@ table {
 }
 
 th, td {
-    padding: 10px;
+    padding: 12px;
     text-align: left;
     border-bottom: 1px solid #ddd;
 }
 
 th {
-    background-color: #4CAF50;
+    background-color: #004d40; /* Deep teal header background */
     color: white;
 }
 
 tr:hover {
-    background-color: #f2f2f2;
+    background-color: #e0f2f1; /* Light teal hover */
 }
 
 h2 {
-    text-align: center;
-    margin-bottom: 20px;
+    color: #004d40; /* Deep teal text color */
 }
 
 /* Error message styles */
 .error {
-    color: red;
+    color: #d32f2f; /* Red color */
     text-align: center;
     margin-bottom: 10px;
-}
-
-
-/* Navigation bar styles */
-.navbar {
-    background-color: #333;
-    overflow: hidden;
-}
-
-.navbar ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-}
-
-.navbar li {
-    float: left;
-}
-
-.navbar li a {
-    display: block;
-    color: white;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-}
-
-.navbar li a:hover {
-    background-color: #ddd;
-    color: black;
 }
 
 /* Responsive design for mobile devices */
 @media (max-width: 768px) {
     .container {
         width: 100%;
-        padding: 10px;
+        padding: 15px;
     }
 
     .navbar li {
@@ -180,6 +228,34 @@ h2 {
 
     .navbar li a {
         text-align: left;
-        padding-left: 16px;
+        padding-left: 20px;
     }
+}
+
+/* Role button style */
+.role-buttons {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 20px;
+}
+
+.role-buttons input {
+    display: none;
+}
+
+.role-buttons label {
+    padding: 12px 24px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.role-buttons input:checked + label {
+    background-color: #87CEEB;
+    color: white;
+}
+
+.role-buttons label:hover {
+    background-color: #b3e5fc;
 }

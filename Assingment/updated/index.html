@@ -8,9 +8,16 @@
     <script src="scripts.js" defer></script>
 </head>
 <body>
+
     <div class="container">
+        <nav class="navbar">
+            <ul>
+                <li><a href="login.php">Login</a></li>
+            </ul>
+        </nav>
         <form id="registrationForm" action="register.php" method="POST">
             <h2>Registration Form</h2>
+            
             <label for="name">Name:</label>
             <input type="text" id="name" name="name" required pattern="[A-Za-z\s]+" title="Name should contain only letters and spaces.">
 
@@ -29,21 +36,21 @@
             </select>
 
             <!-- Additional fields for Student -->
-            <div id="studentFields" style="display: none;">
+            <div id="studentFields" class="additional-fields">
                 <label for="registrationNumber">Registration Number:</label>
                 <input type="text" id="registrationNumber" name="registrationNumber">
 
                 <label for="year">Year:</label>
-                <input type="year" id="year" name="year">
+                <input type="number" id="year" name="year" min="1" max="4">
 
                 <label for="semester">Semester:</label>
                 <input type="text" id="semester" name="semester">
             </div>
 
             <!-- Additional fields for Lecturer -->
-            <div id="lecturerFields" style="display: none;">
+            <div id="lecturerFields" class="additional-fields">
                 <label for="recruitmentYear">Year of Recruitment:</label>
-                <input type="year" id="recruitmentYear" name="recruitmentYear">
+                <input type="number" id="recruitmentYear" name="recruitmentYear" min="1900" max="2100">
 
                 <label for="department">Department:</label>
                 <input type="text" id="department" name="department">
@@ -55,10 +62,7 @@
                 <input type="text" id="unitSpecials" name="unitSpecials">
             </div>
 
-            <!-- Login fields for Admin -->
-            <div id="adminFields" style="display: none;">
-                <p>Admins can log in with their username and password.</p>
-            </div>
+
 
             <div class="buttons">
                 <button type="submit">Register</button>

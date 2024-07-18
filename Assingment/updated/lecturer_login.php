@@ -46,6 +46,11 @@ $conn->close();
 </head>
 <body>
     <div class="container">
+    <nav class="navbar">
+        <ul>
+            <li><a href="index.html">Register</a></li>
+        </ul>
+    </nav>
         <h2>Lecturer Login</h2>
         <form action="lecturer_login.php" method="POST">
             <label for="username">Username:</label>
